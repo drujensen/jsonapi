@@ -9,12 +9,6 @@ module JSONAPI
     
 
     def to_jsonapi
-      String.build do |io|
-        to_jsonapi io
-      end
-    end
-
-    def to_jsonapi(io)
       { "data": [{ 
               "type": "{{ @type.name.downcase.id }}", 
               "id": @{{"id".id}},
@@ -24,7 +18,7 @@ module JSONAPI
               {% end %}
               }
         }]
-      }.to_json(io)
+      }.to_json
     end
   end
 end
