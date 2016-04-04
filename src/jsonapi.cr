@@ -15,11 +15,7 @@ module JSONAPI
     end
 
     def to_jsonapi(io)
-      io.json_object do |root|
-        root.field "data" do
-          io.json_array do |data|
-            
-            data << { 
+      { "data": [{ 
               "type": "{{ @type.name.downcase.id }}", 
               "id": @{{"id".id}},
               "attributes": {
@@ -27,10 +23,8 @@ module JSONAPI
                 "{{key.id}}": @{{key.id}} as {{value[:type]}},
               {% end %}
               }
-            }
-          end
-        end
-      end
+        }]
+      }.to_json(io)
     end
   end
 end
