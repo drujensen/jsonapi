@@ -9,8 +9,8 @@ module JSONAPI
     
 
     def to_jsonapi
-      String.build do |str|
-        to_jsonapi str
+      String.build do |io|
+        to_jsonapi io
       end
     end
 
@@ -24,7 +24,7 @@ module JSONAPI
               "id": @{{"id".id}},
               "attributes": {
               {% for key, value in properties %}
-                "{{key.id}}": @{{key.id}},
+                "{{key.id}}": @{{key.id}} as {{value[:type]}},
               {% end %}
               }
             }
